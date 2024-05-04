@@ -1,0 +1,18 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: InternetGateway
+metadata:
+  name: eks-igw
+  namespace: crossplane-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  forProvider:
+    region: ap-southeast-1
+    tags:
+      Name: eks-igw
+      Course: gitops-crossplane
+    vpcIdRef:
+      name: eks-crossplane-vpc
+  managementPolicies: Full
+  providerConfigRef:
+    name: aws-provider

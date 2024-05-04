@@ -1,0 +1,63 @@
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: Role
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/instanceprofile
+    argocd.argoproj.io/sync-wave: "0"
+  name: eks-node-crossplane-role
+spec:
+  forProvider:
+    assumeRolePolicy: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
+    tags:
+      Course: gitops-crossplane
+  managementPolicies: Full
+  providerConfigRef:
+    name: aws-provider
+---
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: RolePolicyAttachment
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/role
+  labels:
+    testing.upbound.io/example-name: role
+  name: eks-nodes-crossplane-attachment
+spec:
+  forProvider:
+    roleRef:
+      name: eks-node-crossplane-role
+    policyArnRef:
+      name: AmazonEKSWorkerNodePolicy
+  managementPolicies: Full
+  providerConfigRef:
+    name: aws-provider
+---
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: RolePolicyAttachment
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/role
+  labels:
+    testing.upbound.io/example-name: role
+  name: eks-nodes-crossplane-attachment
+spec:
+  forProvider:
+    roleRef:
+      name: eks-node-crossplane-role
+    policyArnRef:
+      name: AmazonEC2ContainerRegistryReadOnly
+  managementPolicies: Full
+  providerConfigRef:
+    name: aws-provider

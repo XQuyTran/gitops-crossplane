@@ -1,0 +1,25 @@
+apiVersion: eks.aws.upbound.io/v1beta1
+kind: NodeGroup
+metadata:
+  name: crossplane-eks-ng
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  forProvider:
+    amiType: ami-05b46bc4327cf9d99
+    capacityType: SPOT
+    clusterNameRef:
+      name: crossplane-eks-cluster
+    nodeRoleArnRef:
+      name: eks-node-crossplane-role
+    region: ap-southeast-1
+    scalingConfig:
+      - desiredSize: 1
+        maxSize: 1
+        minSize: 1
+    subnetIdRefs:
+      - name: eks-crossplane-subnet-a
+      - name: eks-crossplane-subnet-b
+  managementPolicies: Full
+  providerConfigRef:
+    name: aws-provider

@@ -1,0 +1,17 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: VPC
+metadata:
+  name: eks-crossplane-vpc
+  namespace: crossplane-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  forProvider:
+    cidrBlock: 172.20.0.0/16
+    region: ap-southeast-1
+    tags:
+      Course: gitops-crossplane
+      Name: eks-crossplane-vpc
+  managementPolicies: Full
+  providerConfigRef:
+    name: aws-provider
