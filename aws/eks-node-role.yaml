@@ -3,7 +3,7 @@ kind: Role
 metadata:
   annotations:
     meta.upbound.io/example-id: iam/v1beta1/instanceprofile
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "2"
   name: eks-node-crossplane-role
 spec:
   forProvider:

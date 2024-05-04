@@ -3,7 +3,7 @@ kind: RouteTable
 metadata:
   name: eks-rtb
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   forProvider:
     region: ap-southeast-1
@@ -20,7 +20,7 @@ kind: Route
 metadata:
   name: route
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   forProvider:
     destinationCidrBlock: 0.0.0.0/0
@@ -40,7 +40,7 @@ metadata:
     testing.upbound.io/example-name: rta
   name: crossplane-subnet-a-rta
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   forProvider:
     region: ap-southeast-1
@@ -59,7 +59,7 @@ metadata:
     testing.upbound.io/example-name: rta
   name: crossplane-subnet-b-rta
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   forProvider:
     region: ap-southeast-1

@@ -4,7 +4,7 @@ metadata:
   name: eks-crossplane-vpc
   namespace: crossplane-system
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   forProvider:
     cidrBlock: 172.20.0.0/16

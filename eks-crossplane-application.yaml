@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: eks-provision-crossplane
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: crossplane-system
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ./aws
+    repoURL: 'https://github.com/XQuyTran/gitops-crossplane.git'
+    targetRevision: aws-eks-app
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+    retry:
+      limit: 10
+      backoff:
+        duration: 5s
+        maxDuration: 3m0s
+        factor: 2

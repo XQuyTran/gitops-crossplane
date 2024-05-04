@@ -3,7 +3,7 @@ kind: NodeGroup
 metadata:
   name: crossplane-eks-ng
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "6"
 spec:
   forProvider:
     amiType: ami-05b46bc4327cf9d99
