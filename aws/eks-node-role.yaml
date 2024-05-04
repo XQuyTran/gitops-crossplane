@@ -33,6 +33,7 @@ metadata:
   annotations:
     meta.upbound.io/example-id: iam/v1beta1/role
     argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   labels:
     testing.upbound.io/example-name: role
   name: eks-workernode-role-attachment
@@ -52,6 +53,7 @@ metadata:
   annotations:
     meta.upbound.io/example-id: iam/v1beta1/role
     argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   labels:
     testing.upbound.io/example-name: role
   name: eks-ecs-role-attachment
