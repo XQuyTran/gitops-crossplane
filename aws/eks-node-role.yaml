@@ -35,7 +35,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "3"
   labels:
     testing.upbound.io/example-name: role
-  name: eks-nodes-crossplane-attachment
+  name: eks-workernode-role-attachment
 spec:
   forProvider:
     roleRef:
@@ -54,7 +54,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "3"
   labels:
     testing.upbound.io/example-name: role
-  name: eks-nodes-crossplane-attachment
+  name: eks-ecs-role-attachment
 spec:
   forProvider:
     roleRef:
