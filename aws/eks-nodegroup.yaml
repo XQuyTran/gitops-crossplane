@@ -21,6 +21,6 @@ spec:
     subnetIdRefs:
       - name: eks-crossplane-subnet-a
       - name: eks-crossplane-subnet-b
-  managementPolicies: Full
+  deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider

@@ -23,7 +23,7 @@ spec:
       }
     tags:
       Course: gitops-crossplane
-  managementPolicies: Full
+  deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider
 ---
@@ -43,7 +43,7 @@ spec:
       name: eks-node-crossplane-role
     policyArnRef:
       name: AmazonEKSWorkerNodePolicy
-  managementPolicies: Full
+  deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider
 ---
@@ -63,6 +63,6 @@ spec:
       name: eks-node-crossplane-role
     policyArnRef:
       name: AmazonEC2ContainerRegistryReadOnly
-  managementPolicies: Full
+  deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider

@@ -13,6 +13,6 @@ spec:
     tags:
       Course: gitops-crossplane
       Name: eks-crossplane-vpc
-  managementPolicies: Full
+  deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider
