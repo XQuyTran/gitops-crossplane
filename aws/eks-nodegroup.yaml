@@ -4,6 +4,7 @@ metadata:
   name: crossplane-eks-ng
   annotations:
     argocd.argoproj.io/sync-wave: "6"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
     amiType: ami-05b46bc4327cf9d99

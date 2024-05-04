@@ -4,6 +4,7 @@ metadata:
   annotations:
     meta.upbound.io/example-id: iam/v1beta1/instanceprofile
     argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   name: eks-node-crossplane-role
 spec:
   forProvider:
@@ -31,6 +32,7 @@ kind: RolePolicyAttachment
 metadata:
   annotations:
     meta.upbound.io/example-id: iam/v1beta1/role
+    argocd.argoproj.io/sync-wave: "3"
   labels:
     testing.upbound.io/example-name: role
   name: eks-nodes-crossplane-attachment
@@ -49,6 +51,7 @@ kind: RolePolicyAttachment
 metadata:
   annotations:
     meta.upbound.io/example-id: iam/v1beta1/role
+    argocd.argoproj.io/sync-wave: "3"
   labels:
     testing.upbound.io/example-name: role
   name: eks-nodes-crossplane-attachment

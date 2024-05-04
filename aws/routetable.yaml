@@ -4,6 +4,7 @@ metadata:
   name: eks-rtb
   annotations:
     argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
     region: ap-southeast-1
@@ -21,6 +22,7 @@ metadata:
   name: route
   annotations:
     argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
     destinationCidrBlock: 0.0.0.0/0
@@ -41,6 +43,7 @@ metadata:
   name: crossplane-subnet-a-rta
   annotations:
     argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
     region: ap-southeast-1
@@ -60,6 +63,7 @@ metadata:
   name: crossplane-subnet-b-rta
   annotations:
     argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
     region: ap-southeast-1
