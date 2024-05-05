@@ -1,7 +1,7 @@
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTable
 metadata:
-  name: eks-rtb
+  name: eks-crossplane-rtb
   annotations:
     argocd.argoproj.io/sync-wave: "3"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
