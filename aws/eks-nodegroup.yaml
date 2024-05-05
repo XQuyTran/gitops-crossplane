@@ -7,7 +7,6 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
-    amiType: ami-05b46bc4327cf9d99
     capacityType: SPOT
     clusterNameRef:
       name: crossplane-eks-cluster

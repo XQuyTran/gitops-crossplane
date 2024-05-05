@@ -152,7 +152,6 @@ metadata:
   annotations:
     meta.helm.sh/release-name: argocd
     meta.helm.sh/release-namespace: argocd
-  creationTimestamp: "2024-05-02T08:06:15Z"
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/instance: argocd
@@ -163,5 +162,3 @@ metadata:
     helm.sh/chart: argo-cd-6.7.18
   name: argocd-cm
   namespace: argocd
-  resourceVersion: "53211"
-  uid: 3afdd3da-3b3b-438c-a079-eff649e81c58
