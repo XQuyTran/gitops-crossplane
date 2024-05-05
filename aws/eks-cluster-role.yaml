@@ -41,8 +41,7 @@ spec:
   forProvider:
     roleRef:
       name: eks-cluster-crossplane-role
-    policyArnRef:
-      name: AmazonEKSClusterPolicy
+    policyArn: arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
   deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider

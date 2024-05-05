@@ -41,8 +41,7 @@ spec:
   forProvider:
     roleRef:
       name: eks-node-crossplane-role
-    policyArnRef:
-      name: AmazonEKSWorkerNodePolicy
+    policyArn: arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
   deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider
@@ -61,8 +60,7 @@ spec:
   forProvider:
     roleRef:
       name: eks-node-crossplane-role
-    policyArnRef:
-      name: AmazonEC2ContainerRegistryReadOnly
+    policyArn: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
   deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider
