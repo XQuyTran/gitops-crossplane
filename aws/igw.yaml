@@ -1,0 +1,19 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: InternetGateway
+metadata:
+  name: eks-igw
+  namespace: crossplane-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    region: ap-southeast-1
+    tags:
+      Name: eks-igw
+      Course: gitops-crossplane
+    vpcIdRef:
+      name: eks-crossplane-vpc
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider

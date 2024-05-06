@@ -1,0 +1,39 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: eks-crossplane-subnet-a
+  namespace: crossplane-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    availabilityZone: ap-southeast-1a
+    cidrBlock: 172.20.0.0/24
+    region: ap-southeast-1
+    mapPublicIpOnLaunch: true
+    vpcIdRef:
+      name: eks-crossplane-vpc
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: eks-crossplane-subnet-b
+  namespace: crossplane-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    availabilityZone: ap-southeast-1b
+    cidrBlock: 172.20.1.0/24
+    region: ap-southeast-1
+    mapPublicIpOnLaunch: true
+    vpcIdRef:
+      name: eks-crossplane-vpc
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider

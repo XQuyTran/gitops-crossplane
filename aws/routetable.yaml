@@ -1,0 +1,76 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTable
+metadata:
+  name: eks-crossplane-rtb
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    region: ap-southeast-1
+    tags:
+      Name: eks-crossplane-rtb
+    vpcIdRef:
+      name: eks-crossplane-vpc
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Route
+metadata:
+  name: route
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    destinationCidrBlock: 0.0.0.0/0
+    gatewayIdRef:
+      name: eks-igw
+    region: ap-southeast-1
+    routeTableIdRef:
+      name: eks-crossplane-rtb
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  labels:
+    testing.upbound.io/example-name: rta
+  name: crossplane-subnet-a-rta
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    region: ap-southeast-1
+    routeTableIdRef:
+      name: eks-crossplane-rtb
+    subnetIdRef:
+      name: eks-crossplane-subnet-a
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  labels:
+    testing.upbound.io/example-name: rta
+  name: crossplane-subnet-b-rta
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    region: ap-southeast-1
+    routeTableIdRef:
+      name: eks-crossplane-rtb
+    subnetIdRef:
+      name: eks-crossplane-subnet-b
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider

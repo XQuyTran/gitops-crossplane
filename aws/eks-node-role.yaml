@@ -1,0 +1,66 @@
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: Role
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/instanceprofile
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: eks-node-crossplane-role
+spec:
+  forProvider:
+    assumeRolePolicy: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
+    tags:
+      Course: gitops-crossplane
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+---
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: RolePolicyAttachment
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/role
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    testing.upbound.io/example-name: role
+  name: eks-workernode-role-attachment
+spec:
+  forProvider:
+    roleRef:
+      name: eks-node-crossplane-role
+    policyArn: arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+---
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: RolePolicyAttachment
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1beta1/role
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    testing.upbound.io/example-name: role
+  name: eks-ecs-role-attachment
+spec:
+  forProvider:
+    roleRef:
+      name: eks-node-crossplane-role
+    policyArn: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
