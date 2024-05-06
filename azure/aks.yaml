@@ -1,0 +1,39 @@
+apiVersion: containerservice.azure.upbound.io/v1beta1
+kind: KubernetesCluster
+metadata:
+  labels:
+    testing.upbound.io/example-name: example
+  name: sea-crossplane-aks
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    apiServerAccessProfile:
+      - authorizedIpRanges:
+          - 192.168.1.0/24
+        subnetIdRef:
+          name: kubesubnet
+    defaultNodePool:
+      - name: default
+        nodeCount: 1
+        vmSize: Standard_B2s
+        enableNodePublicIp: false
+        fipsEnabled: false
+        osDiskSizeGb: 8
+        osDiskType: Ephemeral
+        podSubnetIdRef:
+          name: kubesubnet
+        tags:
+          provisioner: crossplane
+        vnetSubnetIdRef:
+          name: kubesubnet
+    dnsPrefix: crossplaneaks
+    kubernetesVersion: 1.29.2
+    location: Southeast Asia
+    resourceGroupName: sea-crossplane-rg
+    tags:
+      provisioner: crossplane
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: azure-provider

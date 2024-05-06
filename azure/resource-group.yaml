@@ -1,0 +1,15 @@
+apiVersion: azure.upbound.io/v1beta1
+kind: ResourceGroup
+metadata:
+  name: sea-crossplane-rg
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    location: Southeast Asia
+    tags:
+      provisioner: crossplane
+  providerConfigRef:
+    name: azure-provider
