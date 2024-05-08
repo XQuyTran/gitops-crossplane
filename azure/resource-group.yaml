@@ -31,4 +31,4 @@ spec:
       provisioner: crossplane
   deletionPolicy: Delete
   providerConfigRef:
-    name: azure-provider
+    name: azure-provider-config

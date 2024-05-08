@@ -16,5 +16,5 @@ spec:
     tags:
       provisioner: crossplane
   providerConfigRef:
-    name: azure-provider
+    name: azure-provider-config
     
