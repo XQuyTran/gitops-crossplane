@@ -1,0 +1,20 @@
+apiVersion: network.azure.upbound.io/v1beta1
+kind: VirtualNetwork
+metadata:
+  name: sea-crossplane-vnet
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    addressSpace:
+      - 10.0.0.0/16
+    location: Southeast Asia
+    resourceGroupNameRef:
+      name: sea-crossplane-rg
+    tags:
+      provisioner: crossplane
+  providerConfigRef:
+    name: azure-provider-config
+    

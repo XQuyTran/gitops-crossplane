@@ -1,0 +1,20 @@
+apiVersion: network.azure.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: kubesubnet
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    addressPrefixes:
+      - 10.0.0.0/24
+    resourceGroupNameRef:
+      name: sea-crossplane-rg
+    virtualNetworkNameRef:
+      name: sea-crossplane-vnet
+    tags:
+      provisioner: crossplane
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: azure-provider-config
